@@ -27,14 +27,14 @@ class TaskController extends Controller
         $task->updated_at = $request->get('updated_at');
 
         if($task->save()) {
-            return new TaskResources($task);
+            return response()->json(new TaskResources($task));
         }
     }
 
     public function show($id)
     {
         $task = Task::findOrFail($id);
-        return new TaskResources($task);
+        return response()->json(new TaskResources($task));
     }
 
     public function update(Request $request, $id)
@@ -46,7 +46,7 @@ class TaskController extends Controller
         $task->updated_at = Carbon::now('America/Sao_Paulo');
 
         if($task->save()) {
-            return new TaskResources($task);
+            return response()->json(new TaskResources($task));
         }
     }
 
@@ -54,7 +54,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         if($task->delete()) {
-         return new TaskResources( $task );
+         return response()->json(new TaskResources($task));
         }
     }
 }
