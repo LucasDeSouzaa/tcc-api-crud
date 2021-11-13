@@ -20,7 +20,7 @@ class TaskController extends Controller
 
     public function decreasing(): JsonResponse
     {
-        $tasks = Task::all()->orderBy('id', 'desc');
+        $tasks = Task::all()->sortByDesc('id');
         return response()->json(TaskResources::collection($tasks));
     }
 
