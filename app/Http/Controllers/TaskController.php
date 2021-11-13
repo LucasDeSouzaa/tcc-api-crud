@@ -5,22 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Task as Task;
 use App\Http\Resources\Task as TaskResources;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class TaskController extends Controller
 {
-    public function index(): AnonymousResourceCollection
+    public function index(): JsonResponse
     {
         $tasks = Task::all();
-        return TaskResources::collection($tasks);
+        return response()->json(TaskResources::collection($tasks));
     }
-
-//    public function create()
-//    {
-//        // return a view for create a task
-//    }
 
     public function store(Request $request)
     {
@@ -40,11 +36,6 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         return new TaskResources($task);
     }
-
-//    public function edit($id)
-//    {
-//        // return a view for edit a task
-//    }
 
     public function update(Request $request, $id)
     {
