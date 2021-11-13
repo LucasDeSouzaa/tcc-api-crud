@@ -22,6 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // List all tasks
 Route::get('tasks', [TaskController::class,'index']);
 
+// List all tasks decreasing
+Route::get('tasks/desc', [TaskController::class,'decreasing']);
+
 // Create a task
 Route::post('task', [TaskController::class,'store']);
 

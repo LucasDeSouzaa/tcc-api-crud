@@ -18,6 +18,12 @@ class TaskController extends Controller
         return response()->json(TaskResources::collection($tasks));
     }
 
+    public function decreasing(): JsonResponse
+    {
+        $tasks = Task::all()->orderBy('id', 'desc');
+        return response()->json(TaskResources::collection($tasks));
+    }
+
     public function store(Request $request)
     {
         $task = new Task();
