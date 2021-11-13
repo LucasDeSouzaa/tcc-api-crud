@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function index(): JsonResponse
     {
         $tasks = Task::all();
-        return response()->json(TaskResources::collection($tasks));
+        return response()->json(TaskResources::collection($tasks))->orderBy('id', 'desc');
     }
 
     public function store(Request $request)
